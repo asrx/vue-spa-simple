@@ -1,14 +1,35 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <top-menu v-if="user.authenticated"></top-menu>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import TopMenu from './components/commom/TopMenu'
+  import JwtToken from './helpers/jwt'
+  import {mapState} from 'vuex'
+
+  export default {
+    name: 'App',
+    computed: {
+      ...mapState({
+        user: state => state.AuthUser
+      })
+    },
+    created(){
+      if (JwtToken.getToken()){
+        this.$store.dispatch('setAuthUser')
+      }else if (JwtToken.getAuthId()){
+        this.$store.dispatch('refreshToken')
+      }
+    },
+    components:{
+      TopMenu
+    }
+  }
 </script>
 
 <style>
