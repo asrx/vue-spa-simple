@@ -1,20 +1,27 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <notification></notification>
+    <router-view />
   </div>
-</template>
 
+</template>
+<script>
+  import Notification from './common/Notification'
+  import JwtToken from './../helpers/jwt'
+
+  export default {
+    created(){
+      if (JwtToken.getToken()) {
+        this.$store.dispatch('setAuthUser')
+      }else if (JwtToken.getAuthId()){
+        this.$store.dispatch('refreshToken')
+      }
+    },
+    components:{
+      Notification
+    }
+  }
+</script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
