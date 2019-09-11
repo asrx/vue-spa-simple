@@ -4,7 +4,19 @@
 
 <script>
     export default {
-        name: "Index"
+        name: "Index",
+        created(){
+            let dataForm = {
+                email:'xudong0226@163.com',
+                password:'123123'
+            }
+
+            axios.post('/auth/login',dataForm).then(response => {
+                console.log(response)
+            }).then(error => {
+                console.log(error)
+            })
+        }
     }
 </script>
 

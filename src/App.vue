@@ -6,8 +6,8 @@
 
 </template>
 <script>
-  import Notification from './common/Notification'
-  import JwtToken from './../helpers/jwt'
+  import Notification from './components/common/Notification'
+  import JwtToken from './helpers/jwt'
 
   export default {
     created(){
