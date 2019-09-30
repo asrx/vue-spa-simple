@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import JwtAuth from "../helpers/jwt";
+import axios from 'axios'
 
 // Full config:  https://github.com/axios/axios#request-config
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL || '';
@@ -36,8 +37,6 @@ _axios.interceptors.response.use(
   },
   function(error) {
     // Do something with response error
-    console.log(error.response)
-    console.log(error.response.status)
     if (error.response.status == 401) {
 
     }

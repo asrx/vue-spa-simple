@@ -64,7 +64,7 @@
                         }
                         this.$store.dispatch('updatePasswordRequest',formData).then(response => {
 //                            this.$router.push({name:'profile'})
-                            console.log("Success!")
+                            
                         }).catch(error => {
 //                            if(error.response.status === 421){
 //                                this.bag.add({field:"password",msg:'邮箱密码不相符',scope: 'auth'})
